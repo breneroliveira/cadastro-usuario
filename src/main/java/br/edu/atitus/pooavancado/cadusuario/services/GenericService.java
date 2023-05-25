@@ -6,18 +6,18 @@ import org.springframework.data.domain.Pageable;
 import br.edu.atitus.pooavancado.cadusuario.entities.GenericEntity;
 import br.edu.atitus.pooavancado.cadusuario.repositories.GenericRepository;
 
-public interface GenericService<TGeneric extends GenericEntity, TRepository extends GenericRepository<TGeneric>> {
+public interface GenericService<TEntity extends GenericEntity> {
 
-	TRepository getRepository();
+	GenericRepository<TEntity> getRepository();
 	
-	default TGeneric save(TGeneric objeto) throws Exception {
+	default TEntity save(TEntity objeto) throws Exception {
 		if(getRepository().existsByNomeAndIdNot(objeto.getNome(), objeto.getId()))
-			throw new Exception("Já existe cadastro com este nome");
+			throw new Exception("Já existe cadastro com este nome.");
 		
 		return this.getRepository().save(objeto);
 	}
 	
-	default TGeneric findById(Long id) throws Exception {
+	default TEntity findById(Long id) throws Exception {
 		var objeto = this.getRepository().findById(id);
 		
 		if(objeto.isEmpty())
@@ -26,7 +26,7 @@ public interface GenericService<TGeneric extends GenericEntity, TRepository exte
 		return objeto.get();
 	}
 	
-	default Page<TGeneric> findByNome(String nome, Pageable pageable) throws Exception {
+	default Page<TEntity> findByNome(String nome, Pageable pageable) throws Exception {
 		return this.getRepository().findByNomeContainingIgnoreCase(nome, pageable);
 	}
 	

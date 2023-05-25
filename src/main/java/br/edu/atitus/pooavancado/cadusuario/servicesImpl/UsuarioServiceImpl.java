@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Transactional
 	public void alteraStatus(Long id) throws Exception {
 		if(!usuarioRepository.existsById(id))
-			throw new Exception("Não existe usuário com o ID: " + id);
+			throw new Exception("Não existe usuário com o ID " + id);
 			
 		usuarioRepository.alteraStatus(id);
 	}	
