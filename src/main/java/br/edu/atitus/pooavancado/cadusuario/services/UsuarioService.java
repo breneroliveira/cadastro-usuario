@@ -1,16 +1,11 @@
 package br.edu.atitus.pooavancado.cadusuario.services;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import br.edu.atitus.pooavancado.cadusuario.entities.Usuario;
+import br.edu.atitus.pooavancado.cadusuario.repositories.UsuarioRepository;
 
-public interface UsuarioService {
-
-	Usuario save(Usuario usuario) throws Exception;
-	Usuario findById(long id) throws Exception;
-	Page<Usuario> findByNome(String nome, Pageable pageable) throws Exception;
-	void deleteById(long id) throws Exception;
+public interface UsuarioService extends GenericService<Usuario, UsuarioRepository>{
+	
 	void alteraStatus(@Param(value = "id") long id) throws Exception;
 }

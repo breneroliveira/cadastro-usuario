@@ -25,42 +25,43 @@ import br.edu.atitus.pooavancado.cadusuario.services.UsuarioService;
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*")
 public class UsuarioController {
-	
-	final private UsuarioService usuarioService;
+		
+	final UsuarioService usuarioService;
 	
 	public UsuarioController(UsuarioService usuarioService) {
+		super();
 		this.usuarioService = usuarioService;
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Object> getUsuarioById(@PathVariable long id) {
-		Usuario usuario;
-		try {
-			usuario = this.usuarioService.findById(id);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(usuario);
-	}
-	
 	@GetMapping
-	public ResponseEntity<Object> getUsuarios(@PageableDefault(page = 0, size = 10, 
-															   sort = "id", direction = Direction.ASC) 
-											  Pageable paginacao, 
+	public ResponseEntity<Object> getUsuarios(@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable paginacao, 
 											  @RequestParam(required = false) String nome, 
-											  @RequestParam(required = false) String email) {
+											  @RequestParam(required = false) String email){
 		Page<Usuario> lista;
+		
 		try {
 			lista = usuarioService.findByNome(nome, paginacao);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
-		
 		return ResponseEntity.status(HttpStatus.OK).body(lista);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<Object> getUsuarioById(@PathVariable long id){
+		Usuario usuario;
+		
+		try {
+			usuario = this.usuarioService.findById(id);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+			
+		return ResponseEntity.status(HttpStatus.OK).body(usuario);
+	}
+	
 	@PostMapping
-	public ResponseEntity<Object> postUsuarios(@RequestBody Usuario usuario) {
+	public ResponseEntity<Object> postUsuario(@RequestBody Usuario usuario) {
 		try {
 			usuarioService.save(usuario);
 		} catch (Exception e) {
@@ -70,8 +71,9 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> putUsuario(@PathVariable long id, @RequestBody Usuario usuario) {
+	public ResponseEntity<Object> putUsuario(@RequestBody Usuario usuario, @PathVariable long id){
 		usuario.setId(id);
+		
 		try {
 			usuarioService.save(usuario);
 		} catch (Exception e) {
@@ -81,7 +83,7 @@ public class UsuarioController {
 	}
 	
 	@PatchMapping("/status/{id}")
-	public ResponseEntity<Object> alteraStatus(@PathVariable long id) {
+	public ResponseEntity<Object> alteraStatus(@PathVariable long id){
 		try {
 			usuarioService.alteraStatus(id);
 		} catch (Exception e) {
@@ -91,12 +93,13 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteUsuario(@PathVariable long id) {
+	public ResponseEntity<Object> deleteUsuario(@PathVariable long id){
 		try {
 			usuarioService.deleteById(id);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
-		return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso.");
+		
+		return ResponseEntity.status(HttpStatus.OK).body("Deletado com sucesso");
 	}
 }

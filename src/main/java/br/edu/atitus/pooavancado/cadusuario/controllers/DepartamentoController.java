@@ -24,7 +24,7 @@ import br.edu.atitus.pooavancado.cadusuario.services.DepartamentoService;
 @RequestMapping("/departamentos")
 @CrossOrigin(origins = "*")
 public class DepartamentoController {
-
+		
 	final private DepartamentoService departamentoService;
 
 	public DepartamentoController(DepartamentoService departamentoService) {
