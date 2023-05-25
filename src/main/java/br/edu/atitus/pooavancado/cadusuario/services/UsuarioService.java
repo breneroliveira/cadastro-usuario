@@ -7,5 +7,5 @@ import br.edu.atitus.pooavancado.cadusuario.repositories.UsuarioRepository;
 
 public interface UsuarioService extends GenericService<Usuario, UsuarioRepository> {
 	
-	void alteraStatus(@Param(value = "id") long id) throws Exception;
+	void alteraStatus(@Param(value = "id") Long id) throws Exception;
 }

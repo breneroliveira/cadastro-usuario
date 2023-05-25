@@ -32,7 +32,7 @@ public class DepartamentoController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> getDepartamentoById(@PathVariable long id) {
+	public ResponseEntity<Object> getDepartamentoById(@PathVariable Long id) {
 		Departamento departamento;
 		try {
 			departamento = this.departamentoService.findById(id);
@@ -69,7 +69,7 @@ public class DepartamentoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> putDepartamentos(@PathVariable long id, @RequestBody Departamento departamento) {
+	public ResponseEntity<Object> putDepartamentos(@PathVariable Long id, @RequestBody Departamento departamento) {
 		departamento.setId(id);
 		try {
 			departamentoService.save(departamento);
@@ -80,7 +80,7 @@ public class DepartamentoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteDepartamento(@PathVariable long id) {
+	public ResponseEntity<Object> deleteDepartamento(@PathVariable Long id) {
 		try {
 			departamentoService.deleteById(id);
 		} catch (Exception e) {

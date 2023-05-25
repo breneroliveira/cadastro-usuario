@@ -1,21 +1,15 @@
 package br.edu.atitus.pooavancado.cadusuario.entities;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
 public abstract class GenericEntity implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(length = 200, nullable = false)
 	private String nome;
@@ -24,7 +18,7 @@ public abstract class GenericEntity implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

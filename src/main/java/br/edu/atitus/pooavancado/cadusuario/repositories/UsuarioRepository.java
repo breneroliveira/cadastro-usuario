@@ -10,5 +10,5 @@ public interface UsuarioRepository extends GenericRepository<Usuario> {
 	
 	@Query(value = "update tb_usuario set status = NOT status where id = :id", nativeQuery = true)
 	@Modifying
-	void alteraStatus(@Param(value = "id") long id);
+	void alteraStatus(@Param(value = "id") Long id);
 }

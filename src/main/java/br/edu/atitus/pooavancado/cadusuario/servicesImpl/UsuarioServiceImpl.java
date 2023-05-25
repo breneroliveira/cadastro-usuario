@@ -22,7 +22,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	@Transactional
-	public void alteraStatus(long id) throws Exception {
+	public void alteraStatus(Long id) throws Exception {
 		if(!usuarioRepository.existsById(id))
 			throw new Exception("Não existe usuário com o ID: " + id);
 			

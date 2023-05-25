@@ -8,8 +8,6 @@ import jakarta.persistence.Table;
 @Table(name = "tb_usuario")
 public class Usuario extends GenericEntity {
 	
-	private static final long serialVersionUID = 1L;
-	
 	@Column(length = 150, nullable = true)
 	private String email;
 	

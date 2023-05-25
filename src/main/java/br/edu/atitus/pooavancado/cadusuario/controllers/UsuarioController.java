@@ -34,9 +34,10 @@ public class UsuarioController {
 	}
 
 	@GetMapping
-	public ResponseEntity<Object> getUsuarios(@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable paginacao, 
+	public ResponseEntity<Object> getUsuarios(@PageableDefault(page = 0, size = 10,
+			                                  sort = "id", direction = Direction.ASC) Pageable paginacao,
 											  @RequestParam(required = false) String nome, 
-											  @RequestParam(required = false) String email){
+											  @RequestParam(required = false) String email) {
 		Page<Usuario> lista;
 		
 		try {
@@ -48,7 +49,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> getUsuarioById(@PathVariable long id){
+	public ResponseEntity<Object> getUsuarioById(@PathVariable Long id) {
 		Usuario usuario;
 		
 		try {
@@ -71,7 +72,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> putUsuario(@RequestBody Usuario usuario, @PathVariable long id){
+	public ResponseEntity<Object> putUsuario(@RequestBody Usuario usuario, @PathVariable Long id) {
 		usuario.setId(id);
 		
 		try {
@@ -83,7 +84,7 @@ public class UsuarioController {
 	}
 	
 	@PatchMapping("/status/{id}")
-	public ResponseEntity<Object> alteraStatus(@PathVariable long id){
+	public ResponseEntity<Object> alteraStatus(@PathVariable Long id) {
 		try {
 			usuarioService.alteraStatus(id);
 		} catch (Exception e) {
@@ -93,7 +94,7 @@ public class UsuarioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteUsuario(@PathVariable long id){
+	public ResponseEntity<Object> deleteUsuario(@PathVariable Long id) {
 		try {
 			usuarioService.deleteById(id);
 		} catch (Exception e) {

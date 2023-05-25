@@ -11,6 +11,6 @@ import br.edu.atitus.pooavancado.cadusuario.entities.GenericEntity;
 public interface GenericRepository<TGeneric extends GenericEntity> extends JpaRepository<TGeneric, Long> {
 
 	Page<TGeneric> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
-	boolean existsByNomeAndIdNot(String nome, long id);	
+	boolean existsByNomeAndIdNot(String nome, Long id);
 	Page<TGeneric> findByNome(String nome, Pageable pageable);
 }
