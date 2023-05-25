@@ -15,7 +15,6 @@ public class Departamento extends GenericEntity {
 	
 	@Column(length = 150, nullable = true)
 	private String email;
-	
 
 	public Integer getRamal() {
 		return ramal;

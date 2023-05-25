@@ -6,7 +6,7 @@ import br.edu.atitus.pooavancado.cadusuario.repositories.DepartamentoRepository;
 import br.edu.atitus.pooavancado.cadusuario.services.DepartamentoService;
 
 @Service
-public class DepartamentoServiceImpl implements DepartamentoService{
+public class DepartamentoServiceImpl implements DepartamentoService {
 	
 	final DepartamentoRepository departamentoRepository;
 	

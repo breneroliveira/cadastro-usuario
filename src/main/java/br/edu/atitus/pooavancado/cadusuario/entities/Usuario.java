@@ -15,8 +15,7 @@ public class Usuario extends GenericEntity {
 	
 	@Column(nullable = false)
 	private boolean status;
-	
-	
+
 	public String getEmail() {
 		return email;
 	}
