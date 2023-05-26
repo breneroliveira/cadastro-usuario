@@ -3,6 +3,7 @@ package br.edu.atitus.pooavancado.cadusuario.controllers;
 import br.edu.atitus.pooavancado.cadusuario.entities.Usuario;
 import br.edu.atitus.pooavancado.cadusuario.services.GenericService;
 import br.edu.atitus.pooavancado.cadusuario.services.UsuarioService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,8 @@ public class UsuarioController extends GenericController<Usuario> {
 	GenericService<Usuario> getService() {
 		return usuarioService;
 	}
-	
+
+	@Operation(description = "Método para alterar o status do usuário.")
 	@PatchMapping("/status/{id}")
 	public ResponseEntity<Object> alteraStatus(@PathVariable Long id) {
 		try {
