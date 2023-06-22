@@ -9,11 +9,16 @@ import br.edu.atitus.pooavancado.cadusuario.repositories.GenericRepository;
 public interface GenericService<TEntity extends GenericEntity> {
 
 	GenericRepository<TEntity> getRepository();
+
+	default void validateSave(TEntity objeto) throws Exception {
+		if (objeto.getNome() == null || objeto.getNome().isEmpty())
+			throw new Exception("É necessário informar o nome válido.");
+		if(getRepository().existsByNomeAndIdNot(objeto.getNome(), objeto.getId()))
+			throw new Exception("Já existe registro com este nome.");
+	}
 	
 	default TEntity save(TEntity objeto) throws Exception {
-		if(getRepository().existsByNomeAndIdNot(objeto.getNome(), objeto.getId()))
-			throw new Exception("Já existe cadastro com este nome.");
-		
+		this.validateSave(objeto);
 		return this.getRepository().save(objeto);
 	}
 	

@@ -8,8 +8,6 @@ import jakarta.persistence.Table;
 @Table(name = "tb_departamento")
 public class Departamento extends GenericEntity {
 	
-	private static final long serialVersionUID = 1L;
-	
 	@Column(nullable = false)
 	private Integer ramal;
 	
